@@ -1,6 +1,6 @@
 import React from "react";
 import Details from './components/details/Details';
-
+import Main from "./components/main/Main";
 import './App.css';
 import useStyles from './styles';
 import {Grid} from '@material-ui/core';
@@ -13,7 +13,7 @@ return(
            <Details title="Income" />
         </Grid>
         <Grid items xs={12} sm={3}>
-           Main
+           <Main/>
         </Grid>
         <Grid items xs={12} sm={4}>
            <Details title="Expense" />
