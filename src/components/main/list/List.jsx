@@ -1,15 +1,16 @@
-import React from 'react';
+import React,{useContext} from 'react';
+import { BudgetBuddyContext } from '../../../context/context';
 import {List as MUIList,ListItem,ListItemText,ListItemAvatar,Avatar,ListItemSecondaryAction,IconButton,Slide} from '@material-ui/core';
 import {Delete,MoneyOff} from '@material-ui/icons';
 import useStyles from './styles';
 
 const List =()=>{
     const classes = useStyles();
-    const transactions = [
-        {id:1,type:"Income",category:"Salary",amount:50,date:"Wed Dec 16"},
-        {id:2,type:"Expense",category:"Groceries",amount:50,date:"Wed Dec 16"},
-        {id:1,type:"Income",category:"Sidebusiness",amount:50,date:"Wed Dec 18"}
-    ];
+    const {deleteTransaction,transactions} = useContext(BudgetBuddyContext);
+
+    
+    
+    
     return(
        <MUIList dense={false} className={classes.list}>
         {transactions.map((transaction)=>(
@@ -22,7 +23,7 @@ const List =()=>{
                 </ListItemAvatar>
                 <ListItemText primary={transaction.category} secondary={`$${transaction.amount} - ${transaction.date}`}/>
                 <ListItemSecondaryAction>
-                    <IconButton edge="end" aria-label="delete" onClick="">
+                    <IconButton edge="end" aria-label="delete" onClick={()=>deleteTransaction(transaction.id)}>
                         <Delete/>
                     </IconButton>
                 </ListItemSecondaryAction>
