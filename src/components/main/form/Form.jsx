@@ -2,6 +2,7 @@ import React,{useState,useContext} from 'react';
 import {TextField,Typography,Grid,Button,FormControl,InputLabel,Select,MenuItem} from '@material-ui/core';
 import { BudgetBuddyContext } from '../../../context/context';
 import {v4 as uuidv4} from 'uuid';
+import { incomeCategories,expenseCategories } from '../../../constants/categories';
 import useStyles from './styles'
 
 const Form = () =>{
@@ -19,7 +20,10 @@ const Form = () =>{
         amount:'',
         date:new Date()
     }
+
+    
     const [formData,setFormData] = useState(inputData);
+    const selectedCategories = (formData.type==="Income")?incomeCategories:expenseCategories;
     
   return(
    <Grid container spacing={2}>
@@ -32,6 +36,7 @@ const Form = () =>{
         <FormControl fullWidth>
             <InputLabel>Type</InputLabel>
             <Select value={formData.type} onChange={(e)=>{setFormData({...formData,type:e.target.value})}}>
+               
                 <MenuItem value="Income">Income</MenuItem>
                 <MenuItem value="Expense">Expense</MenuItem>
             </Select>
@@ -42,8 +47,12 @@ const Form = () =>{
         <FormControl fullWidth>
            <InputLabel>Category</InputLabel>
            <Select value={formData.category} onChange={(e)=>{setFormData({...formData,category:e.target.value})}}>
-            <MenuItem value="Business">Business</MenuItem>
-            <MenuItem value="Salary">Salary</MenuItem>
+            {
+                selectedCategories.map((category)=>
+                    <MenuItem key={category.type} value={category.type}>{category.type}</MenuItem>
+                )
+            }
+            
 
            </Select>
         </FormControl>
