@@ -11,7 +11,6 @@ const Details = ({title}) =>{
     
     const classes = useStyles();
     const {total,chartData} = useTransactions(title);
-    console.log({total,chartData})
     return(
         <Card className={title ==="Income" ? classes.income : classes.expense}>
             <CardHeader title={title} />

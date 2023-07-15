@@ -4,8 +4,21 @@ import Main from "./components/main/Main";
 import './App.css';
 import useStyles from './styles';
 import {Grid} from '@material-ui/core';
+import { useSpeechContext } from '@speechly/react-client';
+
+
+
 function App(){
     const classes = useStyles();
+    const {listening,attachMicrophone,start,stop} = useSpeechContext();
+    const handleClick = async () => {
+      if (listening) {
+        await stop();
+      } else {
+        await attachMicrophone();
+        await start();
+      }
+    };
 return(
   <div>
     <Grid className={classes.grid}container spacing={0} alignItems="center" justifyContent="center" style={{height:'100vh'}}>
@@ -18,6 +31,10 @@ return(
         <Grid item xs={12} sm={4}>
            <Details title="Expense" />
         </Grid>
+        <button onClick={handleClick}>
+        {listening ? 'Stop' : 'Start'} microphone
+      </button>
+        
     </Grid>
   </div>
 );
