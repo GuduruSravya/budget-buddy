@@ -40,9 +40,11 @@ return(
             <div className="app__div">
                <div className={`speechly__div ${listening?'speechly__div-active':''}`}>
                   <button onClick={handleClick} className="speechly__button">
-                     <img src={microphone} alt="microphone" />
+                     <img src={microphone} alt="microphone" /> 
                   </button>
+                  
                </div>
+               <p>To add transaction, you need to stop recording</p>
             </div>
         </Grid>
         <Grid item xs={12} sm={12} md={4} className={classes.desktop}>

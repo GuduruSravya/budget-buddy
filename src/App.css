@@ -3,6 +3,11 @@
     align-items: center;
     justify-content: center;
     margin-top: 2rem;
+    flex-direction: column;
+}
+.app__div p{
+    font-weight: 500;
+    font-size: 1.25rem;
 }
 
 
