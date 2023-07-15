@@ -1,17 +1,18 @@
-import React from "react";
+import React,{useRef,useEffect} from "react";
 import Details from './components/details/Details';
 import Main from "./components/main/Main";
 import './App.css';
 import useStyles from './styles';
 import {Grid} from '@material-ui/core';
-import { useSpeechContext } from '@speechly/react-client';
+import { useSpeechContext,SpeechState } from '@speechly/react-client';
 import microphone from '../src/images/microphone.png';
 
 
 
 function App(){
     const classes = useStyles();
-    const {listening,attachMicrophone,start,stop} = useSpeechContext();
+    const {listening,attachMicrophone,start,stop,speechState} = useSpeechContext();
+    const main = useRef();
     const handleClick = async () => {
       if (listening) {
         await stop();
@@ -20,16 +21,27 @@ function App(){
         await start();
       }
     };
+    const executeScroll = ()=>{
+      main.current.scrollIntoView({ behavior: 'smooth' });
+    }
+    useEffect(()=>{
+      if(listening){
+         executeScroll();
+      }
+    },[listening])
 return(
   <div>
     <Grid className={classes.grid}container spacing={0} alignItems="center" justifyContent="center" style={{height:'100vh'}}>
-        <Grid item xs={12} sm={4}>
+        <Grid item xs={12} sm={4} className={classes.mobile}>
            <Details title="Income" />
         </Grid>
-        <Grid item xs={12} sm={3}>
+        <Grid ref={main} item xs={12} sm={3} className={classes.main}>
            <Main/>
         </Grid>
-        <Grid item xs={12} sm={4}>
+        <Grid item xs={12} sm={4} className={classes.desktop}>
+           <Details title="Income" />
+        </Grid>
+        <Grid item xs={12} sm={4} className={classes.last}>
            <Details title="Expense" />
         </Grid>
 

@@ -7,10 +7,6 @@ import useStyles from './styles';
 const List =()=>{
     const classes = useStyles();
     const {deleteTransaction,transactions} = useContext(BudgetBuddyContext);
-
-    
-    
-    
     return(
        <MUIList dense={false} className={classes.list}>
         {transactions.map((transaction)=>(

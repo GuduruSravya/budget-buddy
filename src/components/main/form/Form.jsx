@@ -6,16 +6,19 @@ import formatDate from '../../../utils/formatDate';
 import { incomeCategories,expenseCategories } from '../../../constants/categories';
 import useStyles from './styles';
 import { useSpeechContext } from '@speechly/react-client';
+import Info from '../../Info/Info';
 
 const Form = () =>{
     const classes = useStyles();
     const {deleteTransaction,addTransaction} = useContext(BudgetBuddyContext);
     const {segment} = useSpeechContext();
+    const [open,setOpen] = useState(false);
 
     const createTransaction = () =>{
         if(formData.amount === '' || formData.category==='') 
             return;
         const transaction={...formData, amount:Number(formData.amount),id:uuidv4()}
+        setOpen(true);
         addTransaction(transaction);
         setFormData(inputData);
     }
@@ -74,6 +77,7 @@ const Form = () =>{
     
   return(
    <Grid container spacing={2}>
+    <Info open={open} setOpen={setOpen}/>
     <Grid item xs={12}>
         <Typography align="center" variant="subtitle2" gutterBottom>
             {segment && segment.words.map((w)=>w.value).join(" ")}
@@ -110,7 +114,7 @@ const Form = () =>{
     <Grid item xs={6}>
         <TextField type="date" label="Date" fullWidth value={formData.date} onChange={(e)=>{setFormData({...formData,date:formatDate(e.target.value)})}}/>
     </Grid>
-    <Button variant="outlined" color="primary" fullWidth onClick={createTransaction}>Create</Button>
+    <Button className={classes.button}variant="outlined" color="primary" fullWidth onClick={createTransaction}>Create</Button>
 
    </Grid>
   )
