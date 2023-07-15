@@ -1,3 +1,11 @@
+.app__div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+
 .speechly__div{
     height: 80px;
     width: 80px;
@@ -6,9 +14,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    position: fixed;
-    bottom: -15px; /* Adjust the distance from the bottom */
-    right: 45%;
+    
+    
 }
 
 .speechly__button{
@@ -28,12 +35,9 @@
     height: 80%;
 }
 
-@media screen and (max-width:780px){
-    .speechly__div{
-    position: fixed;
-    bottom: 20px; /* Adjust the distance from the bottom */
-    right: 35%;
-    background-color: beige;
-    z-index: 999;
+@media screen and (max-width:900px){
+    .app__div{
+    margin-top:.5rem;
+    
     }
 }

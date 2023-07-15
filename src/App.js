@@ -36,7 +36,14 @@ return(
           <Details title="Income" />
         </Grid>
         <Grid ref={main} item xs={12} sm={12} md={3} className={classes.main}>
-          <Main />
+            <Main />
+            <div className="app__div">
+               <div className={`speechly__div ${listening?'speechly__div-active':''}`}>
+                  <button onClick={handleClick} className="speechly__button">
+                     <img src={microphone} alt="microphone" />
+                  </button>
+               </div>
+            </div>
         </Grid>
         <Grid item xs={12} sm={12} md={4} className={classes.desktop}>
           <Details title="Income" />
@@ -44,14 +51,8 @@ return(
         <Grid item xs={12} sm={12} md={4}className={classes.last}>
           <Details title="Expense" />
    </Grid>
-   <Grid item xs={12} sm={12}>
-      <div className={`speechly__div ${listening?'speechly__div-active':''}`}>
+  
       
-      <button onClick={handleClick} className="speechly__button">
-       <img src={microphone} alt="microphone" />
-      </button>
-        </div>
-   </Grid>
      
         
         
