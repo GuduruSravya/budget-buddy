@@ -5,6 +5,7 @@ import './App.css';
 import useStyles from './styles';
 import {Grid} from '@material-ui/core';
 import { useSpeechContext } from '@speechly/react-client';
+import microphone from '../src/images/microphone.png';
 
 
 
@@ -31,9 +32,14 @@ return(
         <Grid item xs={12} sm={4}>
            <Details title="Expense" />
         </Grid>
-        <button onClick={handleClick}>
-        {listening ? 'Stop' : 'Start'} microphone
+
+      <div className={`speechly__div ${listening?'speechly__div-active':''}`}>
+      
+      <button onClick={handleClick} className="speechly__button">
+       <img src={microphone} alt="microphone" />
       </button>
+        </div>
+        
         
     </Grid>
   </div>

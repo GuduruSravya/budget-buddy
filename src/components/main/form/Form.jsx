@@ -13,6 +13,8 @@ const Form = () =>{
     const {segment} = useSpeechContext();
 
     const createTransaction = () =>{
+        if(formData.amount === '' || formData.category==='') 
+            return;
         const transaction={...formData, amount:Number(formData.amount),id:uuidv4()}
         addTransaction(transaction);
         setFormData(inputData);
@@ -52,7 +54,11 @@ const Form = () =>{
                         break;
                     
                 }
-            })
+            });
+
+            if(segment.isFinal && formData.amount && formData.category && formData.type && formData.date){
+                createTransaction();
+            }
         }
     },[segment]);
     const inputData = {

@@ -1,0 +1,26 @@
+.speechly__div{
+    height: 100px;
+    width: 100px;
+    background-color: aliceblue;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.speechly__button{
+    all:unset;
+    width:50%;
+    height: 90%;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.speechly__div-active{
+    box-shadow: 0 0 10px 10px #2875cd;
+}
+
+.speechly__button img{
+    width: 100%;
+    height: 80%;
+}
